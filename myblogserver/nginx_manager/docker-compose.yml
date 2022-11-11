@@ -10,3 +10,8 @@ services:
     volumes:
       - /home/docker/nginx_manager/data:/data
       - /home/docker/nginx_manager/letsencrypt:/etc/letsencrypt
+
+networks:
+    default:
+        name: network
+        external: true
