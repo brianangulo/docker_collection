@@ -10,8 +10,6 @@ services:
       - SECRET_PATH=/secretsshouldnotbetold #optional
     volumes:
       - /home/docker/pwndrop:/config
-    ports:
-      - 8080:8080
     restart: unless-stopped
 
 networks:
