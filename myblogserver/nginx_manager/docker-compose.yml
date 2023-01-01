@@ -2,10 +2,10 @@ version: '3'
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx_manager
     restart: unless-stopped
     ports:
       - '80:80'
-      - '81:81'
       - '443:443'
     volumes:
       - /home/docker/nginx_manager/data:/data
@@ -13,5 +13,5 @@ services:
 
 networks:
     default:
-        name: network
+        name: server_internal
         external: true
