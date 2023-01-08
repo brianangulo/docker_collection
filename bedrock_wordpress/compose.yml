@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+    app:
+        # port 9000
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        container_name: sample-container
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - sample-container:/var/www
+    nginx:
+        # port 3000
+        build:
+            # nginx DF and .conf in a subfolder
+            context: ./nginx/
+            dockerfile: Dockerfile
+        container_name: nginx
+        restart: unless-stopped
+        volumes:
+            - sample-container:/var/www
+volumes:
+    sample-container:
+networks:
+    default:
+        name: server_internal
+        external: true

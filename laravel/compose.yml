@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        container_name: larabrute_php
+        image: brian219/larabrute_php:${CURRENT_TAG:-latest}
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - larabrute_volume:/var/www
+    nginx:
+        build:
+            context: ./nginx/
+            dockerfile: Dockerfile
+        container_name: larabrute_nginx
+        image: brian219/larabrute_nginx:${CURRENT_TAG:-latest}
+        restart: unless-stopped
+        ports:
+            - "80:80"
+        volumes:
+            - larabrute_volume:/var/www
+volumes:
+    larabrute_volume:
+networks:
+    default:
+        name: mysql
+        external: true
