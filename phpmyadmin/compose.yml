@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  phpmyadmin:
+    # port 8080
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=mysql
+
+networks:
+    default:
+        name: server_internal
+        external: true
