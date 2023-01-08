@@ -5,9 +5,10 @@ services:
   db:
   # port 3306
     image: mysql
+    container_name: portainer
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: SuperSecretPassword
 
 networks:
     default:
